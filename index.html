@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Francesca Crachilova</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Francesca Crachilova studies neuroscience and philosophy at Stanford and researches computational neuroscience and multi-agent AI alignment.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one left-aligned reading column; dates sit in a narrow mono gutter beside each entry, like a lab notebook. */
+:root {
+  --bg: #f4f5f2;
+  --surface: #eaece6;
+  --fg: #181b22;
+  --muted: #5c6370;
+  --rule: #d3d6cf;
+  --accent: #b0245f;      /* fluorescent-dye magenta */
+  --trace: #9aa0a8;
+  --display: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --body: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121419; --surface: #1b1e25; --fg: #e7e8ea; --muted: #9aa1ad;
+    --rule: #2c3039; --accent: #f06aa4; --trace: #4d535e; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #121419; --surface: #1b1e25; --fg: #e7e8ea; --muted: #9aa1ad;
+  --rule: #2c3039; --accent: #f06aa4; --trace: #4d535e; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--body);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 3.5rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4.5rem;
+}
+a { color: inherit; text-decoration-color: var(--accent); text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+a:hover { color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+/* Header */
+header { display: grid; grid-template-columns: 1fr 11.5rem; gap: 2rem; align-items: end; }
+.intro { display: flex; flex-direction: column; gap: 1.25rem; min-width: 0; }
+.portrait {
+  width: 100%; max-width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 30%; display: block;
+  border-radius: 3px; background: var(--surface);
+}
+.kicker {
+  font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--muted);
+  display: flex; flex-wrap: wrap; gap: 0.25rem 1rem;
+}
+h1 {
+  font-family: var(--display); font-weight: 400;
+  font-size: clamp(2.75rem, 9vw, 4.75rem);
+  line-height: 1; letter-spacing: -0.02em; margin: 0;
+  text-wrap: balance;
+}
+h1 em { font-style: italic; color: var(--accent); }
+.lede {
+  font-family: var(--display); font-size: clamp(1.25rem, 3.2vw, 1.5rem);
+  line-height: 1.45; margin: 0; max-width: 36rem; text-wrap: pretty;
+}
+.links { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; font-size: 0.9375rem; }
+
+/* Raster plot */
+figure.raster { margin: 0; display: flex; flex-direction: column; gap: 0.5rem; }
+.raster canvas {
+  width: 100%; height: 132px; display: block;
+  border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+}
+figcaption {
+  font-family: var(--mono); font-size: 0.75rem; color: var(--muted);
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.25rem 1rem;
+}
+
+/* Sections */
+section { display: flex; flex-direction: column; gap: 1.5rem; }
+h2 {
+  font-family: var(--mono); font-weight: 500; font-size: 0.75rem;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent);
+  margin: 0; padding-bottom: 0.75rem; border-bottom: 1px solid var(--rule);
+}
+.prose { display: flex; flex-direction: column; gap: 1rem; max-width: 38rem; }
+.prose p { margin: 0; }
+
+.entries { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2rem; }
+.entry { display: grid; grid-template-columns: 8.5rem 1fr; gap: 0.25rem 1.5rem; }
+.entry > * { min-width: 0; }
+.when {
+  font-family: var(--mono); font-size: 0.8125rem; color: var(--muted);
+  font-variant-numeric: tabular-nums; padding-top: 0.3rem;
+}
+.what { display: flex; flex-direction: column; gap: 0.35rem; }
+h3 {
+  font-family: var(--display); font-weight: 500; font-size: 1.375rem;
+  line-height: 1.25; margin: 0; text-wrap: balance;
+}
+.role { font-size: 0.9375rem; color: var(--muted); margin: 0; }
+.what p.desc { margin: 0.25rem 0 0; }
+
+/* Featured publication */
+.paper {
+  background: var(--surface); border-radius: 4px;
+  padding: 1.5rem 1.5rem 1.4rem; display: flex; flex-direction: column; gap: 0.5rem;
+}
+.paper .tag { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.paper h3 { font-size: 1.75rem; font-style: italic; font-weight: 400; }
+.paper p { margin: 0; }
+.paper h3 a { text-decoration: none; }
+.paper h3 a:hover { text-decoration: underline; text-decoration-color: var(--accent); }
+.paper .read { font-size: 0.9375rem; font-weight: 500; align-self: flex-start; margin-top: 0.25rem; }
+
+/* Honours */
+.honours { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.honours li {
+  display: grid; grid-template-columns: 8.5rem 1fr; gap: 0.25rem 1.5rem;
+  padding-block: 1rem; border-bottom: 1px solid var(--rule);
+}
+.honours li:first-child { padding-top: 0; }
+.honours li > * { min-width: 0; }
+.honours strong { font-weight: 600; }
+
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: 1.5rem; }
+.facts div { display: flex; flex-direction: column; gap: 0.25rem; }
+.facts dt { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.facts dd { margin: 0; }
+
+/* Contact */
+.contact { display: flex; flex-direction: column; gap: 1rem; }
+.contact p { margin: 0; font-family: var(--display); font-size: 1.375rem; line-height: 1.4; max-width: 34rem; }
+.email-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; }
+.email { font-family: var(--mono); font-size: 0.9375rem; user-select: all; overflow-wrap: anywhere; }
+button.copy {
+  font: 500 0.8125rem var(--body); color: var(--fg); background: transparent;
+  border: 1px solid var(--rule); border-radius: 999px; padding: 0.35rem 0.9rem; cursor: pointer;
+}
+button.copy:hover { border-color: var(--accent); color: var(--accent); }
+
+footer { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); }
+
+@media (max-width: 560px) {
+  .wrap { padding-block: 2.25rem 3rem; gap: 3.5rem; }
+  .entry, .honours li { grid-template-columns: 1fr; }
+  header { grid-template-columns: 1fr; gap: 1.5rem; }
+  .portrait { width: 9rem; order: -1; }
+  .when { padding-top: 0; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="intro">
+    <div class="kicker"><span>Palo Alto</span><span>London</span><span>Stanford ’30</span></div>
+    <h1>Francesca <em>Crachilova</em></h1>
+    <p class="lede">I study how minds arise, in neurons, in tissue and in machines, and how we keep increasingly autonomous AI systems aligned with what we actually want.</p>
+    <nav class="links" aria-label="Elsewhere">
+      <a href="https://www.linkedin.com/in/francesca-crachilova-7a131228a/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="#writing">Writing</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    </div>
+    <img class="portrait" src="francesca.jpg" alt="Portrait of Francesca Crachilova" width="560" height="700">
+  </header>
+
+  <figure class="raster" aria-label="Animated raster plot of simulated neuronal spikes">
+    <canvas id="raster"></canvas>
+    <figcaption><span>Simulated spike trains · 8 units · two-state Markov firing</span><span id="isi">mean ISI —</span></figcaption>
+  </figure>
+
+  <section id="about">
+    <h2>About</h2>
+    <div class="prose">
+      <p>I’m a first-year at Stanford studying neuroscience and philosophy. My interests run across artificial intelligence, neuroscience, computational biology, philosophy of mind and alignment.</p>
+      <p>I do computational neuroscience research in Dr Michael Levin’s lab at Tufts and work on multi-agent alignment at Shiba AI. I follow the US–China AI race closely and I’m interested in global entrepreneurship. Outside the lab, I’m a big fan of Russian literature.</p>
+      <p>Before Stanford, I spent years in competitive debate and won both the Oxford and Cambridge international competitions.</p>
+    </div>
+  </section>
+
+  <section id="research">
+    <h2>Research &amp; Experience</h2>
+    <ol class="entries">
+      <li class="entry">
+        <div class="when">2025 – now</div>
+        <div class="what">
+          <h3>Allen Discovery Center, Tufts University</h3>
+          <p class="role">Computational Neuroscience Researcher · with Dr Michael Levin · Boston, MA</p>
+          <p class="desc">Markov models of neuronal firing, used to study pattern formation and information flow in neural clusters.</p>
+        </div>
+      </li>
+      <li class="entry">
+        <div class="when">2026 – now</div>
+        <div class="what">
+          <h3>Shiba AI</h3>
+          <p class="role">Researcher, Multi-Agent Alignment &amp; Safety · Japan / Remote</p>
+          <p class="desc">Multi-agent alignment and Constitutional AI: coordination, conflicting objectives, and how agentic systems fail.</p>
+        </div>
+      </li>
+      <li class="entry">
+        <div class="when">2023 – now</div>
+        <div class="what">
+          <h3>Centre for Digital Assets and Democracy</h3>
+          <p class="role">Research Fellow · London</p>
+          <p class="desc">White papers on decentralised finance, digital assets and liberty.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section id="writing">
+    <h2>Writing</h2>
+    <article class="paper">
+      <span class="tag">Publication · Orbital Studies</span>
+      <h3><a href="https://thoughtforms.life/wp-content/uploads/2026/05/Francesca-Crachilovas-paper-3.pdf" target="_blank" rel="noopener">Ingressing Patterns of Life</a></h3>
+      <p class="role">Co-authored with Dr Michael Levin</p>
+      <p>On substrate-independent intelligence, morphogenesis and the boundaries of cognition.</p>
+      <a class="read" href="https://thoughtforms.life/wp-content/uploads/2026/05/Francesca-Crachilovas-paper-3.pdf" target="_blank" rel="noopener">Read the paper (PDF) ↗</a>
+    </article>
+  </section>
+
+  <section id="honours">
+    <h2>Debate</h2>
+    <article class="paper">
+      <span class="tag">2023 – 2025</span>
+      <h3>Team England Debating</h3>
+      <p>Selected as one of 11 top under-18 debaters in England. Winner of the Oxford and Cambridge international debating competitions, and the youngest winner of both, at 16.</p>
+    </article>
+  </section>
+
+  <section id="education">
+    <h2>Education &amp; Skills</h2>
+    <dl class="facts">
+      <div><dt>Stanford University</dt><dd>Neuroscience and Philosophy, 2026 – 2030</dd></div>
+      <div><dt>Technical</dt><dd>Python, machine learning, computational modelling, data analysis</dd></div>
+      <div><dt>Languages</dt><dd>English, Russian</dd></div>
+    </dl>
+  </section>
+
+  <section id="contact" class="contact">
+    <h2>Contact</h2>
+    <p>I’m always glad to talk about neuroscience, alignment, philosophy of mind, or China.</p>
+    <div class="email-row">
+      <span class="email" id="email">francesca.crachilova@stanford.edu</span>
+      <button class="copy" id="copy-btn" type="button">Copy email</button>
+    </div>
+  </section>
+
+  <footer>© 2026 Francesca Crachilova</footer>
+</div>
+
+<script>
+(function () {
+  // Copy email
+  var btn = document.getElementById('copy-btn');
+  var email = document.getElementById('email');
+  btn.addEventListener('click', function () {
+    var text = email.textContent.trim();
+    var done = function () { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = 'Copy email'; }, 1800); };
+    var fallback = function () {
+      var r = document.createRange(); r.selectNodeContents(email);
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      btn.textContent = 'Selected, press ⌘C';
+    };
+    try { navigator.clipboard.writeText(text).then(done, fallback); } catch (e) { fallback(); }
+  });
+
+  // Raster plot: each unit flips between a quiet and a bursting state (two-state Markov chain)
+  var canvas = document.getElementById('raster');
+  var ctx = canvas.getContext('2d');
+  var isiLabel = document.getElementById('isi');
+  var UNITS = 8, STEP_MS = 4, PX_PER_STEP = 1;
+  var P = { quietToBurst: 0.004, burstToQuiet: 0.03, rateQuiet: 0.006, rateBurst: 0.16 };
+  var units = [], width = 0, height = 0, dpr = 1;
+
+  function cssVar(n) { return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
+
+  function stepUnit(u) {
+    if (u.burst) { if (Math.random() < P.burstToQuiet) u.burst = false; }
+    else if (Math.random() < P.quietToBurst) u.burst = true;
+    var fire = Math.random() < (u.burst ? P.rateBurst : P.rateQuiet);
+    if (fire && u.refractory <= 0) { u.refractory = 2; return true; }
+    u.refractory--;
+    return false;
+  }
+
+  function resize() {
+    dpr = window.devicePixelRatio || 1;
+    width = canvas.clientWidth; height = canvas.clientHeight;
+    canvas.width = Math.round(width * dpr); canvas.height = Math.round(height * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    var cols = Math.ceil(width / PX_PER_STEP);
+    units = [];
+    for (var i = 0; i < UNITS; i++) {
+      var u = { burst: Math.random() < 0.3, refractory: 0, spikes: [] };
+      for (var t = 0; t < cols; t++) u.spikes.push(stepUnit(u));
+      units.push(u);
+    }
+    draw();
+  }
+
+  function draw() {
+    var trace = cssVar('--trace'), accent = cssVar('--accent');
+    ctx.clearRect(0, 0, width, height);
+    var rowH = height / UNITS, isiSum = 0, isiN = 0;
+    for (var i = 0; i < UNITS; i++) {
+      var u = units[i], y = i * rowH + rowH * 0.22, h = rowH * 0.56, last = -1;
+      ctx.fillStyle = u.burst ? accent : trace;
+      for (var t = 0; t < u.spikes.length; t++) {
+        if (!u.spikes[t]) continue;
+        ctx.fillRect(t * PX_PER_STEP, y, 1.25, h);
+        if (last >= 0) { isiSum += (t - last) * STEP_MS; isiN++; }
+        last = t;
+      }
+    }
+    if (isiN) isiLabel.textContent = 'mean ISI ' + Math.round(isiSum / isiN) + ' ms';
+  }
+
+  function tick() {
+    for (var i = 0; i < UNITS; i++) { var u = units[i]; u.spikes.shift(); u.spikes.push(stepUnit(u)); }
+  }
+
+  resize();
+  var resizeTimer;
+  window.addEventListener('resize', function () { clearTimeout(resizeTimer); resizeTimer = setTimeout(resize, 150); });
+  if (window.matchMedia) {
+    var mq = window.matchMedia('(prefers-color-scheme: dark)');
+    if (mq.addEventListener) mq.addEventListener('change', draw);
+  }
+
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduce) {
+    var lastTime = 0;
+    (function loop(now) {
+      if (now - lastTime > 33) { tick(); tick(); draw(); lastTime = now; }
+      requestAnimationFrame(loop);
+    })(0);
+  }
+})();
+</script>
+</body>
+</html>
