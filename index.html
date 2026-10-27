@@ -153,11 +153,12 @@ h3 {
 .contact p { margin: 0; font-family: var(--display); font-size: 1.375rem; line-height: 1.4; max-width: 34rem; }
 .email-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; }
 .email { font-family: var(--mono); font-size: 0.9375rem; user-select: all; overflow-wrap: anywhere; }
-button.copy {
+button.copy, .resume-btn {
   font: 500 0.8125rem var(--body); color: var(--fg); background: transparent;
   border: 1px solid var(--rule); border-radius: 999px; padding: 0.35rem 0.9rem; cursor: pointer;
 }
-button.copy:hover { border-color: var(--accent); color: var(--accent); }
+.resume-btn { align-self: flex-start; text-decoration: none; display: inline-block; }
+button.copy:hover, .resume-btn:hover { border-color: var(--accent); color: var(--accent); }
 
 footer { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); }
 
@@ -179,11 +180,12 @@ footer { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); }
     <p class="lede">I study how minds arise, in neurons, in tissue and in machines, and how we keep increasingly autonomous AI systems aligned with what we actually want.</p>
     <nav class="links" aria-label="Elsewhere">
       <a href="https://www.linkedin.com/in/francesca-crachilova-7a131228a/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="Francesca-Crachilova-Resume.pdf" target="_blank" rel="noopener">Resume</a>
       <a href="#writing">Writing</a>
       <a href="#contact">Contact</a>
     </nav>
     </div>
-    <img class="portrait" src="francesca.jpg" alt="Portrait of Francesca Crachilova" width="560" height="700">
+    <img class="portrait" src="francesca.jpg" alt="Portrait of Francesca Crachilova" width="480" height="600">
   </header>
 
   <figure class="raster" aria-label="Animated raster plot of simulated neuronal spikes">
@@ -266,6 +268,7 @@ footer { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); }
       <span class="email" id="email">francesca.crachilova@stanford.edu</span>
       <button class="copy" id="copy-btn" type="button">Copy email</button>
     </div>
+    <a class="copy resume-btn" href="Francesca-Crachilova-Resume.pdf" target="_blank" rel="noopener">Download resume (PDF)</a>
   </section>
 
   <footer>© 2026 Francesca Crachilova</footer>
